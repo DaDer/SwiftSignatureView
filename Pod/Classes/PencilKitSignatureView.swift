@@ -45,7 +45,7 @@ open class PencilKitSignatureView: UIView, ISignatureView {
     }
 
     /**
-    The stroke alpha. 
+    The stroke alpha.
     */
     open var strokeAlpha: CGFloat = 1
 
@@ -153,6 +153,9 @@ open class PencilKitSignatureView: UIView, ISignatureView {
 
 @available(iOS 13.0, *)
 extension PencilKitSignatureView: PKCanvasViewDelegate {
+  public func canvasViewDidBeginUsingTool(_ canvasView: PKCanvasView) {
+    delegate?.swiftSignatureViewDidStartDrawing(self)
+  }
 
   public func canvasViewDidEndUsingTool(_ canvasView: PKCanvasView) {
     delegate?.swiftSignatureViewDidDraw(self)

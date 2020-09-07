@@ -235,7 +235,11 @@ open class LegacySwiftSignatureView: UIView, UIGestureRecognizerDelegate, ISigna
             break
         }
 
-        self.delegate?.swiftSignatureViewDidDrawGesture(self, pan)
+        if pan.state == .began {
+          self.delegate?.swiftSignatureViewDidStartDrawing(self)
+        } else {
+          self.delegate?.swiftSignatureViewDidDrawGesture(self, pan)
+        }
     }
 
     fileprivate func distance(_ pt1: CGPoint, pt2: CGPoint) -> CGFloat {
